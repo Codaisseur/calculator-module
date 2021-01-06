@@ -1,4 +1,8 @@
 module.exports = function calculator(operator, x, y) {
+  if (arguments.length !== 3) {
+    throw Error("INCORRECT_NUMBER_OF_ARGUMENTS: 3 arguments expected");
+  }
+
   if (isNaN(x)) {
     throw Error(`${x} is not a number`);
   }
@@ -6,23 +10,24 @@ module.exports = function calculator(operator, x, y) {
     throw Error(`${y} is not a number`);
   }
 
-  if (operator === "+") {
-    return x + y;
-  } else if (operator === "-") {
-    return x - y;
-  } else if (operator === "*") {
-    return x * y;
-  } else if (operator === "/") {
-    if (y === 0) {
-      throw Error("Cannot divide by 0");
-    }
-    return x / y;
-  } else if (operator === "%") {
-    if (y === 0) {
-      throw Error("Cannot divide by 0");
-    }
-    return x % y;
-  } else {
-    throw Error(`OPERATOR_UNKNOWN: "${operator}"`);
+  switch (operator) {
+    case "+":
+      return x + y;
+    case "-":
+      return x - y;
+    case "*":
+      return x * y;
+    case "/":
+      if (y === 0) {
+        throw Error("Cannot divide by 0");
+      }
+      return x / y;
+    case "%":
+      if (y === 0) {
+        throw Error("Cannot divide by 0");
+      }
+      return x % y;
+    default:
+      throw Error(`OPERATOR_UNKNOWN: "${operator}"`);
   }
 };

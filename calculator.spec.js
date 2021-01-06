@@ -1,6 +1,20 @@
 const calculator = require("./calculator");
 
 describe("calculator", () => {
+  test("should complain if the number of arguments is incorrect", () => {
+    expect(() => {
+      calculator("+", 1);
+      // IMPORTANT!! DO NOT CHANGE THIS
+      // The client needs the error to be in this exact format
+    }).toThrowError(/^INCORRECT_NUMBER_OF_ARGUMENTS: 3 arguments expected$/);
+
+    expect(() => {
+      calculator("+", 1, 2, 3);
+      // IMPORTANT!! DO NOT CHANGE THIS
+      // The client needs the error to be in this exact format
+    }).toThrowError(/^INCORRECT_NUMBER_OF_ARGUMENTS: 3 arguments expected$/);
+  });
+
   test("should complain if operator is unknown", () => {
     expect(() => {
       calculator("test", 1, 2);
